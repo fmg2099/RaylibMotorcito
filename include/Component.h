@@ -1,4 +1,5 @@
 #pragma once
+#include "raylib.h"
 class GameObject;
 
 class Component
@@ -12,8 +13,8 @@ private:
 	bool shouldDraw = true;
 
 	virtual void Start() = 0;
-	virtual void Update() = 0;
-	virtual void Draw() = 0;
+	virtual void Update(float deltaTime) = 0;
+	virtual void Draw(float deltaTime) = 0;
 
 	friend class GameObject;
 };

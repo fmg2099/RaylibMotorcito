@@ -15,6 +15,8 @@ by Jeffery Myers is marked with CC0 1.0. To view a copy of this license, visit h
 #include "ConfigManager.h"
 #include <vector>
 #include "GameObject.h"
+#include "LabelComponent.h"
+#include "AudioManager.h"
 
 void DrawCubeTexture(Texture2D texture, Vector3 position, float width, float height, float length, Color color)
 {
@@ -190,16 +192,39 @@ int main(int argc, char** argv)
 	SearchAndSetResourceDir("resources");
 
     GameObject* go = new GameObject();
-    //go->AddComponent(new Label)
+    ptrComponent newComp = std::make_shared<LabelComponent>();
+    go->AddComponent(newComp);
 
+    std::vector<GameObject*> gameobjects;
+    for (int i = 0; i < 100; i++)
+    {
+        GameObject* go = new GameObject();
+        ptrComponent newComp = std::make_shared<LabelComponent>();
+        go->AddComponent(newComp);
+        gameobjects.push_back(go);
+    }
+    
+    AudioManager::getInstance()->LoadBackgroundMusic("TECNO1.XM");
+    //AudioManager::getInstance()->PlayBGM();
 
 	//// Load a texture from the resources directory
 	Texture wabbit = LoadTexture("wabbit_alpha.png");
     while (!WindowShouldClose())
     {
-        go->Update();
+        AudioManager::getInstance()->Update();
+        //go->Update(GetFrameTime());
+        for (auto& go : gameobjects)
+        {
+            go->Update(GetFrameTime());
+        }
+
 		BeginDrawing();
-        go->Draw(GetFrameTime());
+        for (auto& go : gameobjects)
+        {
+            go->Draw(GetFrameTime());
+        }
+
+        //go->Draw(GetFrameTime());
 		ClearBackground(RAYWHITE);
 		DrawTexture(wabbit, 300, 230, WHITE);
 		EndDrawing();

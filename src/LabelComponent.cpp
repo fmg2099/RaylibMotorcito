@@ -5,10 +5,11 @@ void LabelComponent::Start()
 
 }
 
-void LabelComponent::Update()
+void LabelComponent::Update(float deltaTime)
 {
 }
 
-void LabelComponent::Draw()
+void LabelComponent::Draw(float deltaTime)
 {
+	DrawText("holamundo", 100, 100, 16, BLACK);
 }

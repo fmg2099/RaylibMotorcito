@@ -6,7 +6,7 @@ public:
 	~LabelComponent() override = default;
 
 	void Start() override;
-	void Update() override;
-	void Draw() override;
+	void Update(float deltaTime) override;
+	void Draw(float deltaTime) override;
 };
 

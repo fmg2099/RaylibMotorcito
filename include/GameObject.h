@@ -14,7 +14,7 @@ public:
 	~GameObject();
 
 	void Start();
-	void Update();
+	void Update(float deltaTime);
 	void Draw(float deltaTime);
 
 	void AddComponent(ptrComponent newComp);
