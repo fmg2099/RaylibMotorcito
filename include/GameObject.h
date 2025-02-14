@@ -2,6 +2,8 @@
 #include "raylib.h"
 #include "Component.h"
 #include <vector>
+#include <memory>
+typedef std::shared_ptr<Component>  ptrComponent;
 class GameObject
 {
 public:
@@ -15,10 +17,10 @@ public:
 	void Update();
 	void Draw(float deltaTime);
 
-	void AddComponent(Component& newComp);
+	void AddComponent(ptrComponent newComp);
 	void RemoveComponent();
 private:
-	std::vector<Component> components;
+	std::vector<ptrComponent> components;
 
 	friend class Component;
 };

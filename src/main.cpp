@@ -14,7 +14,7 @@ by Jeffery Myers is marked with CC0 1.0. To view a copy of this license, visit h
 #include "LogManager.h"
 #include "ConfigManager.h"
 #include <vector>
-
+#include "GameObject.h"
 
 void DrawCubeTexture(Texture2D texture, Vector3 position, float width, float height, float length, Color color)
 {
@@ -189,11 +189,17 @@ int main(int argc, char** argv)
 	//// Utility function from resource_dir.h to find the resources folder and set it as the current working directory so we can load from it
 	SearchAndSetResourceDir("resources");
 
+    GameObject* go = new GameObject();
+    //go->AddComponent(new Label)
+
+
 	//// Load a texture from the resources directory
 	Texture wabbit = LoadTexture("wabbit_alpha.png");
     while (!WindowShouldClose())
     {
+        go->Update();
 		BeginDrawing();
+        go->Draw(GetFrameTime());
 		ClearBackground(RAYWHITE);
 		DrawTexture(wabbit, 300, 230, WHITE);
 		EndDrawing();

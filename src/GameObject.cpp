@@ -2,6 +2,8 @@
 
 GameObject::GameObject()
 {
+	id = 0;
+	enabled = true;
 }
 
 GameObject::~GameObject()
@@ -20,14 +22,14 @@ void GameObject::Draw(float deltaTime)
 {
 	for (auto& comp : components)
 	{
-		if (comp.ShouldDraw())
+		if (comp->ShouldDraw())
 		{
-			comp.Draw();
+			comp->Draw();
 		}
 	}
 }
 
-void GameObject::AddComponent(Component& newComp)
+void GameObject::AddComponent(ptrComponent newComp)
 {
 	components.push_back(newComp);
 }
